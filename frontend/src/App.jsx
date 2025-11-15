@@ -1,0 +1,27 @@
+import './App.css';
+import {Route,BrowserRouter as Router, Routes} from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import { AuthProvider } from './contexts/AuthContext';
+import Register from './pages/Register';
+import VideoMeet from './pages/videomeet';
+import LandingPage from './pages/landing';
+const App = () => {
+  return (
+    <div>
+        <Router>
+          <AuthProvider>
+        <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path='/Register' element={<Register />}/>
+            <Route path='/home' element={<LandingPage />}/>
+            <Route path='/history' element={<history />}/>
+            <Route path='/:url' element={<VideoMeet />} />
+
+          </Routes>
+          </AuthProvider>
+        </Router>
+    </div>
+  );
+}
+
+export default App;
