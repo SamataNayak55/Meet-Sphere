@@ -2,7 +2,8 @@
 import React from 'react';
 import myimage from '../assets/download.png';
 import "../App.css"
-import { Navigate, useNavigate } from 'react-router-dom';
+import logo from '../assets/react.svg'
+import {  useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const colors = ['#3B0404', '#b95c50', '#deb3ad'];
@@ -44,7 +45,8 @@ function HomePage() {
 
       <nav id='navigation'>
         <div className='navHeader'>
-          <h1 onClick={() => Navigate('/')}>GoVideoS</h1>
+          <img id='navImg' src={logo} alt="" />
+          <h1 >Meet-sphere</h1>
         </div>
         <div className='navLinks'>
           <h5 onClick={() => navigate('/joinAsGuest')}>Join as Guest</h5>
@@ -54,11 +56,11 @@ function HomePage() {
       <div className='mainContent'>
         <div className='body'>
           <h1> Connect with your Loved Ones  &#x2764; </h1>
-          <p>Cover a distance by GoVideoS</p>
+          <p>Cover a distance by meet-sphere</p>
           <button onClick={(handleClick)}>Get Started</button>
         </div>
         <div className='body'>
-          <img src={myimage} alt="pic" style={{height: "350px", width: "200px",display:"block",marginLeft:"auto",position:"relative"}} />
+          <img src={myimage} alt="pic" style={{height: "350", width: "300px",display:"block",position:"relative"}} />
         </div>
       </div>
     </div>

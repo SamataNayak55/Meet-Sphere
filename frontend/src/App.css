@@ -22,12 +22,21 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
+.navHeader{
+    display: flex;
+    align-items: center;
+}
 .navHeader h1 {
     color: #3B0404;
     font-weight: 900;
-    margin: 0;
+    margin: 5px;
+    padding: 5px;
     cursor: pointer;
+
+}
+#navImg {
+    height: 40px;
+
 }
 
 .navLinks {
@@ -48,10 +57,15 @@ body {
 }
 .mainContent  {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
 }
 
 .body {
-    padding: 50px;
+    padding: 10px;
+    margin: 10px;
+    
 }
 button {
     padding: 10px 90px;
