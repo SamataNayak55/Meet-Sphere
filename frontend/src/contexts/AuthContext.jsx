@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext({});
     const client = axios.create({
-      baseURL: `http://localhost:8000/api/v1/users`,
+      baseURL: `http://localhost:8000/api/v1/users`
     })
 
     export const AuthProvider = ({ children }) => {
         const authContext = useContext(AuthContext);
         const [userData, setUserData] = React.useState(authContext);
+        const router = useNavigate();
         const handleRegister = async(name,username,email, password,confirmPassword) => {
             try {
                 let Request = await client.post('/register', {
@@ -20,8 +21,8 @@ export const AuthContext = createContext({});
                    password: password,
                    confirmPassword: confirmPassword
                 })
-                if(Request.status === httpStatus.CREATED){
-                    return Request.data.message;
+                if(request.status === httpStatus.CREATED){
+                    return request.data.message;
                 }
             }catch (error) {
                 throw error;
@@ -29,12 +30,12 @@ export const AuthContext = createContext({});
     }
     const handleLogin = async (email, password) => {
         try{
-            let Request = await client.post('/login', {
+            let request = await client.post('/login', {
                 email: email,
                 password: password
             })
-            if(Request.status === httpStatus.OK){
-                localStorage.setItem('token', Request.data.token);
+            if(request.status === httpStatus.OK){
+                localStorage.setItem('token', request.data.token);
                 router("/home");
 
             }
@@ -67,7 +68,6 @@ export const AuthContext = createContext({});
             throw e;
         }
     }
-        const router = useNavigate();
 
         const data = {
             userData, setUserData,addToUserHistory,getHistoryOfUser,handleRegister,handleLogin

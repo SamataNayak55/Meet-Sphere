@@ -10,33 +10,33 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import { AuthContext } from '../contexts/AuthContext';
 
 function HomeComponent() {
-     const colors = ['#3B0404', '#b95c50', '#deb3ad'];
-    
-      // generate hearts once
-      const hearts = React.useMemo(() => {
-        return Array.from({ length: 22 }).map(() => {
-          return {
-            left: `${Math.floor(Math.random() * 100)}%`,
-            dur: `${(2.5 + Math.random() * 2.5).toFixed(2)}s`,
-            color: colors[Math.floor(Math.random() * colors.length)]
-          };
-        });
-      }, []);
+  const colors = ['#3B0404', '#b95c50', '#deb3ad'];
+
+  // generate hearts once
+  const hearts = React.useMemo(() => {
+    return Array.from({ length: 22 }).map(() => {
+      return {
+        left: `${Math.floor(Math.random() * 100)}%`,
+        dur: `${(2.5 + Math.random() * 2.5).toFixed(2)}s`,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      };
+    });
+  }, []);
 
 
-    let navigate = useNavigate();
-    const [meetingCode, setMeetingCode] = useState("");
+  let navigate = useNavigate();
+  const [meetingCode, setMeetingCode] = useState("");
 
 
-    const {addToUserHistory} = useContext(AuthContext);
-    let handleJoinVideoCall = async () => {
-        await addToUserHistory(meetingCode)
-        navigate(`/${meetingCode}`)
-    }
+  const { addToUserHistory } = useContext(AuthContext);
+  let handleJoinVideoCall = async () => {
+    await addToUserHistory(meetingCode)
+    navigate(`/${meetingCode}`)
+  }
 
-    return (
-        <>
-        <div className="heart-bg" aria-hidden="true">
+  return (
+    <>
+      <div className="heart-bg" aria-hidden="true">
         {hearts.map((h, i) => (
           <i
             key={i}
@@ -51,54 +51,55 @@ function HomeComponent() {
         ))}
       </div>
 
-            <nav id="navigation">
+      <nav id="navigation">
 
-                <div className="navHeader">
-                  <img id='navImg' src={logo} alt="" />
-                    <h1>Meet-sphere</h1>
-                </div>
+        <div className="navHeader">
+          <img id='navImg' src={logo} alt="" />
+          <h1>Meet-sphere</h1>
+        </div>
 
-                <div className='navLinks' style={{ display: "flex", alignItems: "center" }}>
-                    <h5 onClick={
-                        () => {
-                            navigate("/history")
-                        }
-                    }>
-                        <RestoreIcon />
-                    </h5>
-                    <h5 onClick={()=> {navigate("/history")}}>History</h5>
+        <div className='navLinks' style={{ display: "flex", alignItems: "center" }}>
+          <h5 onClick={
+            () => {
+              navigate("/history")
+            }
+          }>
+            <RestoreIcon />
+          </h5>
+          <h5 onClick={() => { navigate("/history") }}>History</h5>
 
-                    <h5 onClick={() => {
-                        localStorage.removeItem("token")
-                        navigate("/auth")
-                    }}>
-                        Logout
-                    </h5>
-                </div>
-
-
-            </nav>
+          <h5 onClick={() => {
+            localStorage.removeItem("token")
+            navigate("/auth")
+          }}>
+            Logout
+          </h5>
+        </div>
 
 
-            <div className="mainContent">
-                <div className="body">
-                    <div>
-         <h1> Connect with your Loved Ones  &#x2764; </h1>
-          <p>Cover a distance by meet-sphere</p>
-                        <div style={{ display: 'flex', gap: "10px" }}>
+      </nav>
 
-                            <TextField onChange={e => setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined" />
-                            <button onClick={handleJoinVideoCall} variant='contained'>Join</button>
 
-                        </div>
-                    </div>
-                </div>
-                <div className='body'>
-                    <img src={myimage} alt="pic" style={{height: "350", width: "300px",display:"block",position:"relative"}} />
-                </div>
+      <div id="mainContent">
+        <div className="body">
+          <div>
+            <h1> Connect with your Loved Ones  &#x2764; </h1>
+            <p>Cover a distance by meet-sphere</p>
+            <div className='buttonArea' style={{ display: 'flex', gap: "10px" }}>
+
+              <TextField onChange={e => setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined" />
+
+              <button className='button-landing' onClick={handleJoinVideoCall} variant='contained'>Join</button>
+
             </div>
-        </>
-    )
+          </div>
+        </div>
+        <div className='body'>
+          <img src={myimage} alt="pic" style={{ height: "350", width: "300px", display: "block", position: "relative" }} />
+        </div>
+      </div>
+    </>
+  )
 }
 
 

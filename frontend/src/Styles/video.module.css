@@ -41,7 +41,7 @@
 
 .chatRoom {
     position: absolute;
-    height: 95vh;
+    height: 90vh;
     right: 0;
     background: white;
     border-radius: 10px;
@@ -58,6 +58,4 @@
 .chattingArea {
     position: absolute;
     bottom: 0;
-    margin: 15px;
-    padding: 5px;
 }

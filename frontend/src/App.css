@@ -55,11 +55,15 @@ body {
     border-radius: 20px;
     padding: 5px 15px;
 }
-.mainContent  {
+#mainContent  {
     display: flex;
     align-items: center;
     justify-content: space-between;
     
+}
+.buttonArea {
+    display: flex;
+    gap: 10px;
 }
 
 .body {
@@ -69,6 +73,16 @@ body {
 }
 button {
     padding: 10px 90px;
+    font-weight: 900;
+    background-color: #b95c50;
+    border: 1px solid #deb3ad;
+    color: #3B0404;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.button-landing {
+    padding: 10px 40px;
     font-weight: 900;
     background-color: #b95c50;
     border: 1px solid #deb3ad;
