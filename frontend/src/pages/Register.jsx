@@ -61,44 +61,34 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function Register() {
-  const [name, setName] = React.useState('');
-  const [username, setUsername] = React.useState('')
-  const [formState, setFormState] = React.useState(0);
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [confirmPassword, setConfirmPassword] = React.useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = React.useState(false);
-  const [confirmPasswordErrorMessage, setConfirmPasswordErrorMessage] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-  const [message, setMessage] = React.useState('');
+const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [error, setError] = React.useState('');
+    const [message, setMessage] = React.useState('');
+
+    const [formState, setFormState] = React.useState(0);
+
+    const [open, setOpen] = React.useState(false)
 
   const {handleRegister, handleLogin} = React.useContext(AuthContext);
 
-  let handleRegisterSubmit = async() => {
+  const handleRegisterSubmit = async() => {
     try {
       if (formState === 0) {
-      let result = await handleRegister(name,username,email, password,confirmPassword);
-      setOpen(true);
-      setName('');
-      setUsername('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setFormState(1);
-      setEmailError("");
-      setEmailErrorMessage("");
-      setPasswordError("");
-      setPasswordErrorMessage("");
-      setConfirmPasswordError("");
-      setConfirmPasswordErrorMessage("");
-      setMessage("Registration successful! ");
-    }
+      let result = await handleRegister(name, username, password);
+                console.log(result);
+                setName("");  
+                setUsername("");
+                setMessage(result);
+                setOpen(true);
+                setError("")
+                setFormState(0)
+                setPassword("")
+            }
     if (formState === 1) {
-      let result = await handleLogin(email, password);
+      let result = await handleLogin(username, password);
+      console.log(result);
       }
   } catch (error) {
     let message = (error.response && error.response.data && error.response.data.message) || 'An error occurred. Please try again.';
@@ -107,43 +97,6 @@ export default function Register() {
   }
 
   } 
-
-  const validateInputs = () => {
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('confirm-password') ? document.getElementById('confirm-password').value : '';
-    let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage('Please enter a valid email address.');
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage('');
-    }
-
-    if (!password.value || password.value.length < 8) {
-      setPasswordError(true);
-      setPasswordErrorMessage('Password must be at least 8 characters long.');
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage('');
-    }
-    if (formState === 0) {
-      if (!confirmPassword || confirmPassword !== password.value) {
-        setConfirmPasswordError(true);
-        setConfirmPasswordErrorMessage('Passwords do not match.');
-        isValid = false;
-      } else {
-        setConfirmPasswordError(false);
-        setConfirmPasswordErrorMessage('');
-      }
-    }
-
-    return isValid;
-  };
 
   return (
     <main>
@@ -180,6 +133,7 @@ export default function Register() {
                 value={name}
                 placeholder="John Doe"
                 required
+                autoComplete='on'
                 fullWidth
                 variant="outlined"
                 autoFocus
@@ -187,11 +141,12 @@ export default function Register() {
               /> </> : <> </> }
             </FormControl>
             <FormControl>
-              {formState === 0 ?<>
+              
               <FormLabel >user name </FormLabel>
               <TextField
                 id="username"
                 type="name"
+                autoComplete='on'
                 name="username"
                 value={username}
                 placeholder="John_Doe123"
@@ -202,32 +157,12 @@ export default function Register() {
                 onChange={(e)=> setUsername(e.target.value)}
 
 
-              /> </> : <> </> }
-            </FormControl>
-            <FormControl>
-              <FormLabel >Email </FormLabel>
-              <TextField
-                error={emailError}
-                helperText={emailErrorMessage}
-                id="email"
-                type="email"
-                name="email"
-                value={email}
-                placeholder="your@email.com"
-                autoComplete="email"
-                autoFocus
-                required
-                fullWidth
-                variant="outlined"
-                color={emailError ? 'error' : 'primary'}
-                onChange={(e)=> setEmail(e.target.value)}
-              />
-            </FormControl>
+              />           </FormControl>
+            
             <FormControl>
               <FormLabel >Password</FormLabel>
               <TextField
-                error={passwordError}
-                helperText={passwordErrorMessage}
+                
                 name="password"
                 placeholder="••••••"
                 type="password"
@@ -237,29 +172,12 @@ export default function Register() {
                 required
                 fullWidth
                 variant="outlined"
-                color={passwordError ? 'error' : 'primary'}
                 onChange={(e)=> setPassword(e.target.value)}
               />
             </FormControl>
-              <FormControl>
-              <FormLabel >Confirm Password</FormLabel>
-              {formState === 0 ?
-              <TextField
-              error={confirmPasswordError}
-              helperText={confirmPasswordErrorMessage}
-                name="confirm-password"
-                placeholder="••••••"
-                type="password"
-                id="confirm-password"
-                value={confirmPassword}
-                required
-                fullWidth
-                variant="outlined"
-                color={confirmPasswordError ? 'error' : 'primary'}
-                onChange={(e)=> setConfirmPassword(e.target.value)}
-              /> : <> </>}
-            </FormControl>
-            
+
+            <p style={{ color: "red" }}>{error}</p>
+                         
             <Button
               type="button"
               onClick={handleRegisterSubmit}
@@ -288,8 +206,9 @@ export default function Register() {
 
       <Snackbar 
         open={open}
-        autoHideDuration={6000}
-        message={message}
+        autoHideDuration={10000}
+        message={message || ''}
+        
       />
     </main>
   );

@@ -21,18 +21,19 @@ app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
 app.use("/api/v1/users", userRoutes);
 
-app.get("/" , (req, res)=>{
-    res.send("Helllo i am root !")
-})
-// ji yahi banaya maine root route "/"
 const start = async () => {
     app.set("mongo_user")
-    const connectionDb = await mongoose.connect("mongodb+srv://samatanayak55_db_user:SamataGautam@cluster0.v5ysg5h.mongodb.net/?appName=Cluster0")
+    const connectionDb = await mongoose.connect( "mongodb+srv://samatanayak55_db_user:SamataGautam@cluster0.v5ysg5h.mongodb.net/?appName=Cluster0")
 
-    console.log(`MONGO Connected DB Host: ${connectionDb.connection.host}`)
+    console.log(`MONGO Connected DB HOst: ${connectionDb.connection.host}`)
     server.listen(app.get("port"), () => {
-        console.log("LISTENING ON PORT 8000")
+        console.log("LISTENIN ON PORT 8000")
     });
 
+
+
 }
+
+
+
 start();

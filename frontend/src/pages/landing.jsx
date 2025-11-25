@@ -70,7 +70,7 @@ function HomeComponent() {
 
           <h5 onClick={() => {
             localStorage.removeItem("token")
-            navigate("/auth")
+            navigate("/register")
           }}>
             Logout
           </h5>

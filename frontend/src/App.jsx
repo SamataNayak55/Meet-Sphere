@@ -1,11 +1,14 @@
 import './App.css';
-import {Route,BrowserRouter as Router, Routes} from 'react-router-dom';
+import {Route , BrowserRouter as Router, Routes} from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import { AuthProvider } from './contexts/AuthContext';
 import Register from './pages/Register';
 import VideoMeet from './pages/videomeet';
 import LandingPage from './pages/landing';
 import History from './pages/history';
+
+//import withAuth from './utils/withAuth';
+
 const App = () => {
   return (
     <div>
