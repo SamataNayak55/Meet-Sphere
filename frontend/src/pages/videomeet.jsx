@@ -1,20 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
 import io from "socket.io-client";
-import { useParams } from 'react-router-dom';
 import { Badge, IconButton, TextField } from '@mui/material';
 import { Button } from '@mui/material';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import VideocamOffIcon from '@mui/icons-material/VideocamOff'
-import styles from "../styles/video.module.css";
+import styles from "../Styles/video.module.css";
 import CallEndIcon from '@mui/icons-material/CallEnd'
 import MicIcon from '@mui/icons-material/Mic'
 import MicOffIcon from '@mui/icons-material/MicOff'
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
-// import server from '../environment';
+//import server from '../environment';
 
-const server_url = "http://localhost:8000"; // Replace with your server URL
+const server_url = 'http://localhost:8000';
 
 var connections = {};
 
@@ -28,16 +27,16 @@ export default function VideoMeetComponent() {
 
     var socketRef = useRef();
     let socketIdRef = useRef();
-    let { meetingCode } = useParams();
+
     let localVideoref = useRef();
 
     let [videoAvailable, setVideoAvailable] = useState(true);
 
     let [audioAvailable, setAudioAvailable] = useState(true);
 
-    let [video, setVideo] = useState(false);
-    
-    let [audio, setAudio] = useState(false);
+    let [video, setVideo] = useState([]);
+
+    let [audio, setAudio] = useState();
 
     let [screen, setScreen] = useState();
 
@@ -69,7 +68,7 @@ export default function VideoMeetComponent() {
         console.log("HELLO")
         getPermissions();
 
-    },[])
+    })
 
     let getDislayMedia = () => {
         if (screen) {
@@ -117,16 +116,9 @@ export default function VideoMeetComponent() {
                     }
                 }
             }
-            setUsername("User_" + Math.random().toString(36).substr(2, 9));
-            setAskForUsername(false);
-            setVideo(videoAvailable);
-            setAudio(audioAvailable);
-            //connectToSocketServer();
         } catch (error) {
             console.log(error);
         }
-    
-       
     };
 
     useEffect(() => {
@@ -202,30 +194,13 @@ export default function VideoMeetComponent() {
         if ((video && videoAvailable) || (audio && audioAvailable)) {
             navigator.mediaDevices.getUserMedia({ video: video, audio: audio })
                 .then(getUserMediaSuccess)
-                //.then((stream) => { })
+                .then((stream) => { })
                 .catch((e) => console.log(e))
         } else {
             try {
                 let tracks = localVideoref.current.srcObject.getTracks()
                 tracks.forEach(track => track.stop())
             } catch (e) { }
-
-             let blackSilence = (...args) => new MediaStream([black(...args), silence()])
-            window.localStream = blackSilence()
-            localVideoref.current.srcObject = window.localStream
-
-            // Notify all peers of stream change
-            for (let id in connections) {
-                if (id === socketIdRef.current) continue
-                connections[id].addStream(window.localStream)
-                connections[id].createOffer().then((description) => {
-                    connections[id].setLocalDescription(description)
-                        .then(() => {
-                            socketRef.current.emit('signal', id, JSON.stringify({ 'sdp': connections[id].localDescription }))
-                        })
-                        .catch(e => console.log(e))
-                })
-            }
         }
     }
 
@@ -304,7 +279,7 @@ export default function VideoMeetComponent() {
         socketRef.current.on('signal', gotMessageFromServer)
 
         socketRef.current.on('connect', () => {
-            socketRef.current.emit('join-call', meetingCode)
+            socketRef.current.emit('join-call', window.location.href)
             socketIdRef.current = socketRef.current.id
 
             socketRef.current.on('chat-message', addMessage)
@@ -458,20 +433,8 @@ export default function VideoMeetComponent() {
 
     let sendMessage = () => {
         console.log(socketRef.current);
-        if(!socketRef.current || socketRef.current.connected === false) {
-            console.warn("socket not connected")
-            if (message && message.trim() !== "") {
-            setMessages(prev => [...prev, { sender: username || "Me", data: message }]);
+        socketRef.current.emit('chat-message', message, username)
         setMessage("");
-            }
-        return;
-        }
-        if (!message || message.trim() === "") return;
-
-    socketRef.current.emit('chat-message', message, username);
-    setMessages(prev => [...prev, { sender: username, data: message }]);
-    setMessage("");
-
 
         // this.setState({ message: "", sender: username })
     }
@@ -479,8 +442,7 @@ export default function VideoMeetComponent() {
     
     let connect = () => {
         setAskForUsername(false);
-        connectToSocketServer();
-       // getMedia();
+        getMedia();
     }
 
 
@@ -529,7 +491,7 @@ export default function VideoMeetComponent() {
 
                             <div className={styles.chattingArea}>
                                 <TextField value={message} onChange={(e) => setMessage(e.target.value)} id="outlined-basic" label="Enter Your chat" variant="outlined" />
-                                <Button variant='contained' onClick={sendMessage} disabled={!socketRef.current|| socketRef.current.connected === false || message.trim()=== ""}>Send</Button>
+                                <Button variant='contained' onClick={sendMessage}>Send</Button>
                             </div>
 
 

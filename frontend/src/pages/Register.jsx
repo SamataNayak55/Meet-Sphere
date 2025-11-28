@@ -73,30 +73,37 @@ const [username, setUsername] = React.useState('');
 
   const {handleRegister, handleLogin} = React.useContext(AuthContext);
 
-  const handleRegisterSubmit = async() => {
-    try {
-      if (formState === 0) {
-      let result = await handleRegister(name, username, password);
+  let handleRegisterSubmit = async() => {
+    let result = null;
+    let result1 = null;
+     try {
+            if (formState === 1) {
+
+                 result1 = await handleLogin(username, password)
+
+
+            }
+            if (formState === 0) {
+                result = await handleRegister(name, username, password);
                 console.log(result);
-                setName("");  
+                setName("");
                 setUsername("");
                 setMessage(result);
                 setOpen(true);
                 setError("")
-                setFormState(0)
+                setFormState(1)
                 setPassword("")
             }
-    if (formState === 1) {
-      let result = await handleLogin(username, password);
-      console.log(result);
-      }
-  } catch (error) {
-    let message = (error.response && error.response.data && error.response.data.message) || 'An error occurred. Please try again.';
-    setMessage(message);
-  
-  }
+            console.log(result);
+        } catch (err) {
 
-  } 
+            console.log(err);
+            let message = err?.response?.message ||
+    err?.message ||
+    "Unknown error occurred";
+  setError(message);
+        }
+    }
 
   return (
     <main>
@@ -206,7 +213,7 @@ const [username, setUsername] = React.useState('');
 
       <Snackbar 
         open={open}
-        autoHideDuration={10000}
+        autoHideDuration={4000}
         message={message || ''}
         
       />
