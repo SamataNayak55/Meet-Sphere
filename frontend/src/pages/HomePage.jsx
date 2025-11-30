@@ -54,12 +54,12 @@ function HomePage() {
         </div>
       </nav>
       <div className='mainContent'>
-        <div className='body'>
+        <div className='left'>
           <h1> Connect with your Loved Ones  &#x2764; </h1>
           <p>Cover a distance by meet-sphere</p>
           <button onClick={(handleClick)}>Get Started</button>
         </div>
-        <div className='body'>
+        <div className='right'>
           <img src={myimage} alt="pic" style={{height: "350", width: "300px",display:"block",position:"relative"}} />
         </div>
       </div>

@@ -80,21 +80,21 @@ function HomeComponent() {
       </nav>
 
 
-      <div id="mainContent">
-        <div className="body">
+      <div className="mainContent">
+        <div className="left">
           <div>
             <h1> Connect with your Loved Ones  &#x2764; </h1>
             <p>Cover a distance by meet-sphere</p>
             <div className='buttonArea' style={{ display: 'flex', gap: "10px" }}>
 
-              <TextField onChange={e => setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined" />
+              <text onChange={e => setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined"></text> 
 
               <button className='button-landing' onClick={handleJoinVideoCall} variant='contained'>Join</button>
 
             </div>
           </div>
         </div>
-        <div className='body'>
+        <div className='right'>
           <img src={myimage} alt="pic" style={{ height: "350", width: "300px", display: "block", position: "relative" }} />
         </div>
       </div>

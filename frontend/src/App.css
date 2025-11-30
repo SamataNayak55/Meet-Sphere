@@ -55,7 +55,7 @@ body {
     border-radius: 20px;
     padding: 5px 15px;
 }
-#mainContent  {
+.mainContent  {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,20 +65,27 @@ body {
     display: flex;
     gap: 10px;
 }
-.buttonArea TextField {
+.buttonArea text {
     padding: 10px;
     border-radius: 20px;
     border: 1px solid #deb3ad;
     outline: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.body {
-    padding: 10px;
-    margin: 10px;
-    
+
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.right > img {
+  width: 30vw;
+  height: auto;
+  border-radius: 20px;
 }
 button {
     padding: 10px 90px;
