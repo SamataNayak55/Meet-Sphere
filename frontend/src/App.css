@@ -65,7 +65,7 @@ body {
     display: flex;
     gap: 10px;
 }
-.buttonArea text {
+.buttonArea textarea {
     padding: 10px;
     border-radius: 20px;
     border: 1px solid #deb3ad;

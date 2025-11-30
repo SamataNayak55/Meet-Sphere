@@ -87,7 +87,7 @@ function HomeComponent() {
             <p>Cover a distance by meet-sphere</p>
             <div className='buttonArea' style={{ display: 'flex', gap: "10px" }}>
 
-              <text onChange={e => setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined"></text> 
+              <textarea onChange={e => setMeetingCode(e.target.value)} id="outlined-basic" label="Meeting Code" variant="outlined"></textarea> 
 
               <button className='button-landing' onClick={handleJoinVideoCall} variant='contained'>Join</button>
 
