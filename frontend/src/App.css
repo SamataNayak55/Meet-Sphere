@@ -65,6 +65,15 @@ body {
     display: flex;
     gap: 10px;
 }
+.buttonArea TextField {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #deb3ad;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .body {
     padding: 10px;
