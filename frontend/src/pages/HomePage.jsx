@@ -24,8 +24,7 @@ function HomePage() {
   const handleClick = () => {
     // Instead of <Navigate to="/some-path" />
     navigate('/register');
-    navigate('/JoinAsGuest');
-    navigate('/game');
+   
   };
 
   return (
