@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useEffect } from "react";
-import '../styles/todo.css'
+import '../Styles/todo.css'
 import withAuth from "../utils/withAuth";
 
  export const Todo = ({task, deleteTodo, editTodo, toggleComplete}) => {
