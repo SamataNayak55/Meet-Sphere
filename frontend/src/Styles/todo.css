@@ -1,0 +1,92 @@
+
+.App {
+  text-align: center;
+}
+
+h1 {
+  color: #3b0404;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+}
+
+.TodoWrapper {
+  background: #deb3ad;
+  margin-top: 5rem;
+  padding: 2rem;
+  border-radius: 5px;
+}
+
+.TodoForm {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.todo-input {
+  outline: none;
+  background: none;
+  border: 1px solid #3b0404;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 300px;
+  color: #3b0404;
+  font-size: 1rem;
+}
+
+.todo-input::placeholder {
+  color: #3b0404;
+}
+
+.todo-btn {
+  background: #deb3ad;
+  color: #3b0404;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+}
+
+.Todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #3b0404;
+  color: #deb3ad;
+  gap: 10px;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.fa-trash {
+  margin-left: 0.75rem;
+}
+.Todo p {
+  flex: 1;
+  cursor: pointer;
+}
+.Todo p.incompleted {
+    text-decoration: none;
+    opacity: 1;
+  color: #deb3ad;
+  cursor: pointer;
+}
+
+.Todo p.completed {
+    opacity: 0.6;
+  color: duskyrose;
+  text-decoration: line-through;
+  cursor: pointer;
+}
+.todo-checkbox {
+  margin-right: 1rem;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #3b0404;
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+}
+ 

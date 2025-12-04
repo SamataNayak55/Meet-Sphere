@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react'
 import withAuth from '../utils/withAuth'
 import { useNavigate } from 'react-router-dom'
-import "../App.css";
+import "../Styles/App.css";
 import myimage from '../assets/download.png'
 import logo from "../assets/react.svg"
 import { Button, IconButton, TextField } from '@mui/material';

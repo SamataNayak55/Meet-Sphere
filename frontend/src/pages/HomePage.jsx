@@ -1,7 +1,7 @@
 // ...existing code...
 import React from 'react';
 import myimage from '../assets/download.png';
-import "../App.css"
+import "../Styles/App.css";
 import JoinAsGuest from './JoinAsGuest';
 import logo from '../assets/react.svg'
 import {  Router, useNavigate } from 'react-router-dom';
@@ -24,6 +24,8 @@ function HomePage() {
   const handleClick = () => {
     // Instead of <Navigate to="/some-path" />
     navigate('/register');
+    navigate('/JoinAsGuest');
+    navigate('/game');
   };
 
   return (
@@ -50,6 +52,7 @@ function HomePage() {
           <h1 >Meet-sphere</h1>
         </div>
         <div className='navLinks'>
+          <h5 onClick={() => navigate('/game')}>Game</h5>
           <h5 onClick={() => navigate('/JoinAsGuest')}>Join as Guest</h5>
           <h5 onClick={() => navigate('/register')}>Register</h5>
         </div>

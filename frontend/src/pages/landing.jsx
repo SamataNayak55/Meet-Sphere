@@ -2,7 +2,7 @@
 import React, { useContext, useState } from 'react'
 import withAuth from '../utils/withAuth'
 import { useNavigate } from 'react-router-dom'
-import "../App.css";
+import "../Styles/App.css";
 import myimage from '../assets/download.png'
 import logo from "../assets/react.svg"
 import { Button, IconButton, TextField } from '@mui/material';
@@ -22,6 +22,12 @@ function HomeComponent() {
       };
     });
   }, []);
+
+  const handleClick = () => {
+    // Instead of <Navigate to="/some-path" />
+    navigate('/todo');
+  };
+
 
 
   let navigate = useNavigate();
@@ -59,6 +65,8 @@ function HomeComponent() {
         </div>
 
         <div className='navLinks' style={{ display: "flex", alignItems: "center" }}>
+           <h5 onClick={() => navigate('/todo')}>get things done</h5>
+
           <h5 onClick={
             () => {
               navigate("/history")
@@ -67,6 +75,8 @@ function HomeComponent() {
             <RestoreIcon />
           </h5>
           <h5 onClick={() => { navigate("/history") }}>History</h5>
+
+          <h5 onClick={() => {navigate("/todo")}}>Get things done</h5>
 
           <h5 onClick={() => {
             localStorage.removeItem("token")
