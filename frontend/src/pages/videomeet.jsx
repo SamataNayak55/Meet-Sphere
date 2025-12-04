@@ -12,7 +12,7 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
 
-const server_url = "https://meet-sphere-frontend.vercel.app/";
+const server_url = "https://meet-sphere-peach.vercel.app";
 
 var connections = {};
 
