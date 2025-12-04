@@ -22,7 +22,7 @@ export default function JoinAsGuest() {
       };
     });
   }, []);
-
+ 
 
   let navigate = useNavigate();
   const [meetingCode, setMeetingCode] = useState("");
@@ -50,12 +50,18 @@ export default function JoinAsGuest() {
         ))}
       </div>
 
-      <nav id="navigation">
+      <nav  id="navigation">
+         <div className='navLinks'>
+          <h5 onClick={() => navigate('/game')}>Game</h5>
+          <h5 onClick={() => navigate('/register')}>Register</h5>
+        </div>
+         
 
         <div className="navHeader">
           <img id='navImg' src={logo} alt="" />
           <h1>Meet-sphere</h1>
         </div>
+
 
         
 

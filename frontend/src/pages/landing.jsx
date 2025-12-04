@@ -23,10 +23,7 @@ function HomeComponent() {
     });
   }, []);
 
-  const handleClick = () => {
-    // Instead of <Navigate to="/some-path" />
-    navigate('/todo');
-  };
+ 
 
 
 
@@ -75,7 +72,7 @@ function HomeComponent() {
             <RestoreIcon />
           </h5>
           <h5 onClick={() => { navigate("/history") }}>History</h5>
-
+          <h5 onClick={() => navigate('/game')}>Game</h5>
           <h5 onClick={() => {navigate("/todo")}}>Get things done</h5>
 
           <h5 onClick={() => {
