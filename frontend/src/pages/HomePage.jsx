@@ -2,8 +2,9 @@
 import React from 'react';
 import myimage from '../assets/download.png';
 import "../App.css"
+import JoinAsGuest from './JoinAsGuest';
 import logo from '../assets/react.svg'
-import {  useNavigate } from 'react-router-dom';
+import {  Router, useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const colors = ['#3B0404', '#b95c50', '#deb3ad'];
@@ -49,8 +50,8 @@ function HomePage() {
           <h1 >Meet-sphere</h1>
         </div>
         <div className='navLinks'>
-          <h5 onClick={() => navigate('/joinAsGuest')}>Join as Guest</h5>
-          <h5 onClick={handleClick}>Register</h5>
+          <h5 onClick={() => navigate('/JoinAsGuest')}>Join as Guest</h5>
+          <h5 onClick={() => navigate('/register')}>Register</h5>
         </div>
       </nav>
       <div className='mainContent'>

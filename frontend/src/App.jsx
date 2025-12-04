@@ -6,6 +6,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import Register from './pages/Register';
 import VideoMeet from './pages/videomeet';
 import LandingPage from './pages/landing';
+import JoinAsGuest from './pages/JoinAsGuest';
 import History from './pages/history';
 
 //import withAuth from './utils/withAuth';
@@ -17,6 +18,7 @@ const App = () => {
           <AuthProvider>
         <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path='/JoinAsGuest' element={<JoinAsGuest />}/>
             <Route path='/Register' element={<Register />}/>
             <Route path='/home' element={<LandingPage />}/>
             <Route path='/history' element={<History />}/>
