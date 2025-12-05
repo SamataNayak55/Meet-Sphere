@@ -177,9 +177,9 @@ export default function Game() {
             <div className="container">
                 <div className="header">
                     <h1>
-                        <i className="fas fa-star" /> Memory Match <i className="fas fa-star" />
+                         Memory Match
                     </h1>
-                    <div className="stats">
+                    <div id="stats">
                         <div className="stat">
                             <div className="stat-label">Moves</div>
                             <div className="stat-value" id="moves">

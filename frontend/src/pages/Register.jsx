@@ -11,7 +11,7 @@ import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/material/styles';
 import Snackbar from '@mui/material/Snackbar';
-import '../Styles/App.css'
+//import '../Styles/App.css'
 import { AuthContext } from '../contexts/AuthContext';
 
 

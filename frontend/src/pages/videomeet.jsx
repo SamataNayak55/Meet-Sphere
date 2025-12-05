@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react'
 import io from "socket.io-client";
 import { Badge, IconButton, TextField } from '@mui/material';
@@ -11,8 +12,9 @@ import MicOffIcon from '@mui/icons-material/MicOff'
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 import ChatIcon from '@mui/icons-material/Chat'
+//import server from '../environment';
 
-const server_url = "https://meet-sphere-peach.vercel.app";
+const server_url = 'http://localhost:8000';
 
 var connections = {};
 
@@ -57,17 +59,13 @@ export default function VideoMeetComponent() {
 
     let [videos, setVideos] = useState([])
 
-    // TODO
-    // if(isChrome() === false) {
-
-
-    // }
+    
 
     useEffect(() => {
         console.log("HELLO")
         getPermissions();
 
-    })
+    },[])
 
     let getDislayMedia = () => {
         if (screen) {
@@ -404,7 +402,7 @@ export default function VideoMeetComponent() {
             let tracks = localVideoref.current.srcObject.getTracks()
             tracks.forEach(track => track.stop())
         } catch (e) { }
-        window.location.href = "/"
+        window.location.href = "/home"
     }
 
     let openChat = () => {
@@ -490,7 +488,7 @@ export default function VideoMeetComponent() {
 
                             <div className={styles.chattingArea}>
                                 <TextField value={message} onChange={(e) => setMessage(e.target.value)} id="outlined-basic" label="Enter Your chat" variant="outlined" />
-                                <Button variant='contained' onClick={sendMessage}>Send</Button>
+                                <button  variant='contained' onClick={sendMessage}>Send</button>
                             </div>
 
 
@@ -499,23 +497,23 @@ export default function VideoMeetComponent() {
 
 
                     <div className={styles.buttonContainers}>
-                        <IconButton onClick={handleVideo} style={{ color: "white" }}>
+                        <IconButton onClick={handleVideo} style={{ color: "black" }}>
                             {(video === true) ? <VideocamIcon /> : <VideocamOffIcon />}
                         </IconButton>
                         <IconButton onClick={handleEndCall} style={{ color: "red" }}>
                             <CallEndIcon  />
                         </IconButton>
-                        <IconButton onClick={handleAudio} style={{ color: "white" }}>
+                        <IconButton onClick={handleAudio} style={{ color: "black" }}>
                             {audio === true ? <MicIcon /> : <MicOffIcon />}
                         </IconButton>
 
                         {screenAvailable === true ?
-                            <IconButton onClick={handleScreen} style={{ color: "white" }}>
+                            <IconButton onClick={handleScreen} style={{ color: "black" }}>
                                 {screen === true ? <ScreenShareIcon /> : <StopScreenShareIcon />}
                             </IconButton> : <></>}
 
                         <Badge badgeContent={newMessages} max={999} color='orange'>
-                            <IconButton onClick={() => setModal(!showModal)} style={{ color: "white" }}>
+                            <IconButton onClick={() => setModal(!showModal)} style={{ color: "black" }}>
                                 <ChatIcon />                        </IconButton>
                         </Badge>
 

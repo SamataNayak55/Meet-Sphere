@@ -1,7 +1,7 @@
 // ...existing code...
 import React from 'react';
 import myimage from '../assets/download.png';
-import "../Styles/App.css";
+//import "../Styles/App.css";
 import JoinAsGuest from './JoinAsGuest';
 import logo from '../assets/react.svg'
 import {  Router, useNavigate } from 'react-router-dom';
@@ -45,7 +45,7 @@ function HomePage() {
         ))}
       </div>
 
-      <nav id='navigation'>
+      <nav className='navigation'>
         <div className='navHeader'>
           <img id='navImg' src={logo} alt="" />
           <h1 >Meet-sphere</h1>
