@@ -11,12 +11,8 @@ import userRoutes from "./routes/user.routes.js";
 
 const app = express();
 const server = createServer(app);
-const io = require('socket.io')(server, {
-    cors: {
-        origin: "https://meet-sphere-peach.vercel.app", 
-        methods: ["GET", "POST"]
-    }
-});
+const io = connectToSocket(server);
+
 
 app.set("port", (process.env.PORT || 8000))
 app.use(cors());
