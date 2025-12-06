@@ -27,7 +27,7 @@
 .conferenceView { 
 
     display: flex;
-    
+    margin: 0%;
     padding: 10px;
     gap: 10px;
 }
