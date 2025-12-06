@@ -6,9 +6,9 @@ let messages = {}
 let timeOnline = {}
 
 export const connectToSocket = (server) => {
-    const io = new Server(server, {
+    const io = require( Server)(server, {
         cors: {
-            origin: "https://meet-sphere-peach.vercel.app",
+            origin: "https://meet-sphere-peach.vercel.ap",
             methods: ["GET", "POST"],
             allowedHeaders: ["*"],
             credentials: true
