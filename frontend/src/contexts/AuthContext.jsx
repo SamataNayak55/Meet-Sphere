@@ -4,12 +4,12 @@ import httpStatus from "http-status";
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import server from "../environment";
-
+import servers from "../enviornment";
 
 export const AuthContext = createContext({});
 
 const client = axios.create({
-    baseURL: `https://meet-sphere-peach.vercel.app/api/v1/users`,
+    baseURL: `${servers}/api/v1/users`,
 })
 
 
