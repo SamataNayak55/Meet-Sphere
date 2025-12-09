@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "react-scripts test",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@dataconnect/generated": "file:src/dataconnect-generated",
