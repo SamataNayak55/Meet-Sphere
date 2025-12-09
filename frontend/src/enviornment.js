@@ -1,6 +1,6 @@
 let IS_PROD = true;
-const servers = IS_PROD ?
+const server = IS_PROD ?
     "https://meet-sphere-backend.vercel.app" :
     "http://localhost:8000"
 
-export default servers;
+export default server;
