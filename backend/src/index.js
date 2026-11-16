@@ -1,3 +1,8 @@
+import dotenv from 'dotenv' 
+dotenv.config({ path: '../.env' })
+import dns from "node:dns";
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+
 import express from "express";
 import { createServer } from "node:http";
 
@@ -22,13 +27,17 @@ app.use(express.urlencoded({ limit: "40kb", extended: true }));
 app.use("/api/v1/users", userRoutes);
 
 const start = async () => {
+    try{
     app.set("mongo_user")
-    const connectionDb = await mongoose.connect( "mongodb+srv://samatanayak55_db_user:SamataGautam@cluster0.v5ysg5h.mongodb.net/?appName=Cluster0")
+    const connectionDb = await mongoose.connect(process.env.MONGODB_URI)
 
     console.log(`MONGO Connected DB HOst: ${connectionDb.connection.host}`)
     server.listen(app.get("port"), () => {
         console.log("LISTENIN ON PORT 8000")
     });
+} catch(err){
+    console.log("database error connection",err)
+}
 
 
 
