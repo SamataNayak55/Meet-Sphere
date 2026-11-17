@@ -62,15 +62,7 @@ function HomeComponent() {
         </div>
 
         <div className='navLinks' style={{ display: "flex", alignItems: "center" }}>
-           <h5 onClick={() => navigate('/todo')}>get things done</h5>
-
-          <h5 onClick={
-            () => {
-              navigate("/history")
-            }
-          }>
-            <RestoreIcon />
-          </h5>
+         
           <h5 onClick={() => { navigate("/history") }}>History</h5>
           <h5 onClick={() => navigate('/game')}>Game</h5>
           <h5 onClick={() => {navigate("/todo")}}>Get things done</h5>
